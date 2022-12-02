@@ -60,6 +60,9 @@ using namespace nvinfer1::plugin;
 #include "specialSlicePlugin.h"
 #include "split.h"
 #include "voxelGenerator.h"
+#include "WindowProcessPlugin.h"
+#include "myTopKPlugin.h"
+#include "oneHot1DPlugin.h"
 
 using nvinfer1::plugin::RPROIParams;
 
@@ -207,6 +210,9 @@ extern "C"
         initializePlugin<nvinfer1::plugin::SpecialSlicePluginCreator>(logger, libNamespace);
         initializePlugin<nvinfer1::plugin::SplitPluginCreator>(logger, libNamespace);
         initializePlugin<nvinfer1::plugin::VoxelGeneratorPluginCreator>(logger, libNamespace);
+        initializePlugin<nvinfer1::plugin::WindowProcessPluginCreator>(logger, libNamespace);
+        initializePlugin<nvinfer1::plugin::MyTopKPluginCreator>(logger, libNamespace);
+        initializePlugin<nvinfer1::plugin::OneHot1DPluginCreator>(logger, libNamespace);
         return true;
     }
 } // extern "C"

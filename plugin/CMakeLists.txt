@@ -64,6 +64,9 @@ set(PLUGIN_LISTS
     specialSlicePlugin
     splitPlugin
     voxelGeneratorPlugin
+    WindowProcessPlugin
+    myTopKPlugin
+    oneHot1DPlugin
     )
 
 # Add BERT sources if ${BERT_GENCODES} was populated
