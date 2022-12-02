@@ -19,6 +19,8 @@ public:
 
     MyTopKPlugin(const void* data, size_t length);
 
+    MyTopKPlugin(int _k, int _length);
+
     const char* getPluginType () const noexcept override;
 
     const char* getPluginVersion () const noexcept override;

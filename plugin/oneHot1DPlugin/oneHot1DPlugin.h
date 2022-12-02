@@ -19,6 +19,8 @@ public:
 
     OneHot1DPlugin(const void* data, size_t length);
 
+    OneHot1DPlugin(int _class_num, int _length);
+
     const char* getPluginType () const noexcept override;
 
     const char* getPluginVersion () const noexcept override;

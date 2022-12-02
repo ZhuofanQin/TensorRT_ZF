@@ -2,8 +2,9 @@
 
 using nvinfer1::plugin::MyTopKPlugin;
 
-__device__ void swap(int &a, int &b){
-    int t = a;
+template <typename T>
+__device__ void swap(T &a, T &b){
+    T t = a;
     a = b;
     b = t;
 }

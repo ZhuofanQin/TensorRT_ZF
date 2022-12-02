@@ -34,6 +34,8 @@ MyTopKPlugin::MyTopKPlugin(const void* data, size_t data_length)
     PLUGIN_VALIDATE(d == a + data_length);
 }
 
+MyTopKPlugin::MyTopKPlugin(int _k, int _length) : k(_k), length(_length) {}
+
 const char* MyTopKPlugin::getPluginType () const noexcept
 {
     return MY_TOPK_PLUGIN_NAME;
@@ -93,6 +95,7 @@ void MyTopKPlugin::configurePlugin(const Dims* inputDims, int nbInputs, const Di
     PLUGIN_ASSERT(inputDims[0].nbDims == 1);
     PLUGIN_ASSERT(k == MY_K);
     PLUGIN_ASSERT(k <= length);
+    // PLUGIN_ASSERT(length == 324000);
 }
 
 int32_t MyTopKPlugin::initialize() noexcept
@@ -150,7 +153,7 @@ IPluginV2Ext* MyTopKPlugin::clone() const noexcept
 {
     try
     {
-        auto* plugin = new MyTopKPlugin();
+        auto* plugin = new MyTopKPlugin(k, length);
         plugin->setPluginNamespace(mNamespace.c_str());
         return plugin;
     }

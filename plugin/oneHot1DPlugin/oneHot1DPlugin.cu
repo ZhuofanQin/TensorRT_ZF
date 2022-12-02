@@ -13,7 +13,6 @@ int32_t OneHot1DPlugin::enqueue(int32_t batchSize, void const *const *inputs, vo
 {
     unsigned int num_threads = length;
     unsigned int num_blocks = class_num;
-
     cudaDeviceProp prop;
     cudaGetDeviceProperties(&prop, 0);
     PLUGIN_ASSERT(num_threads <= prop.maxThreadsPerBlock);

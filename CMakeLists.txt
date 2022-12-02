@@ -84,7 +84,7 @@ endif()
 ############################################################################################
 # Dependencies
 
-set(DEFAULT_CUDA_VERSION 11.3.1)
+set(DEFAULT_CUDA_VERSION 10.2)
 set(DEFAULT_CUDNN_VERSION 8.2)
 set(DEFAULT_PROTOBUF_VERSION 3.20.1)
 

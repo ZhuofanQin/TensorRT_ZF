@@ -34,6 +34,8 @@ OneHot1DPlugin::OneHot1DPlugin(const void* data, size_t data_length)
     PLUGIN_VALIDATE(d == a + data_length);
 }
 
+OneHot1DPlugin::OneHot1DPlugin(int _class_num, int _length) : class_num(_class_num), length(_length) {}
+
 const char* OneHot1DPlugin::getPluginType () const noexcept
 {
     return MY_TOPK_PLUGIN_NAME;
@@ -152,7 +154,7 @@ IPluginV2Ext* OneHot1DPlugin::clone() const noexcept
 {
     try
     {
-        auto* plugin = new OneHot1DPlugin();
+        auto* plugin = new OneHot1DPlugin(class_num, length);
         plugin->setPluginNamespace(mNamespace.c_str());
         return plugin;
     }
