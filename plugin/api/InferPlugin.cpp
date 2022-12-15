@@ -60,7 +60,7 @@ using namespace nvinfer1::plugin;
 #include "specialSlicePlugin.h"
 #include "split.h"
 #include "voxelGenerator.h"
-#include "WindowProcessPlugin.h"
+#include "windowProcessPlugin.h"
 #include "myTopKPlugin.h"
 #include "oneHot1DPlugin.h"
 

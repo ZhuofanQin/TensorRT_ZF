@@ -64,7 +64,7 @@ set(PLUGIN_LISTS
     specialSlicePlugin
     splitPlugin
     voxelGeneratorPlugin
-    WindowProcessPlugin
+    windowProcessPlugin
     myTopKPlugin
     oneHot1DPlugin
     )

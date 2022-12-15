@@ -119,8 +119,8 @@ size_t OneHot1DPlugin::getSerializationSize() const noexcept
 void OneHot1DPlugin::serialize(void* buffer) const noexcept
 {
     char *d = reinterpret_cast<char*>(buffer), *a = d;
-    writeToBuffer<int>(d, class_num);
-    writeToBuffer<int>(d, length);
+    writeToBuffer<int32_t>(d, class_num);
+    writeToBuffer<int32_t>(d, length);
     PLUGIN_ASSERT(d == a + getSerializationSize());
 }
 

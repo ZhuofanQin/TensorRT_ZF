@@ -1,4 +1,4 @@
-#include "WindowProcessPlugin.h"
+#include "windowProcessPlugin.h"
 
 using nvinfer1::plugin::WindowProcessPlugin;
 

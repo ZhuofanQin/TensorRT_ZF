@@ -12,12 +12,14 @@ namespace nvinfer1
 {
 namespace plugin
 {
-class WindowProcessPlugin : public IPluginV2
+class WindowProcessPlugin : public IPluginV2Ext
 {
 public:
     WindowProcessPlugin();
 
     WindowProcessPlugin(const void* data, size_t length);
+
+    WindowProcessPlugin(int _H, int _W, int _C, int _shift_size);
 
     const char* getPluginType () const noexcept override;
 
@@ -28,8 +30,6 @@ public:
     Dims getOutputDimensions(int32_t index, Dims const *inputs, int32_t nbInputDims) noexcept override;
 
     bool supportsFormat(DataType type, PluginFormat format) const noexcept override;
-
-    void configureWithFormat (Dims const *inputDims, int32_t nbInputs, Dims const *outputDims, int32_t nbOutputs, DataType type, PluginFormat format, int32_t maxBatchSize) noexcept override;
 
     int32_t initialize() noexcept override;
 
@@ -45,11 +45,24 @@ public:
 
     void destroy() noexcept override;
 
-    IPluginV2* clone() const noexcept override;
-
     void setPluginNamespace(const char* pluginNamespace) noexcept override;
 
     const char* getPluginNamespace() const noexcept override;
+
+    // IPluginV2Ext
+    nvinfer1::DataType getOutputDataType(int index, const nvinfer1::DataType* inputTypes, int nbInputs) const
+        noexcept override;
+
+    bool isOutputBroadcastAcrossBatch(int outputIndex, const bool* inputIsBroadcasted, int nbInputs) const
+        noexcept override;
+
+    bool canBroadcastInputAcrossBatch(int inputIndex) const noexcept override;
+
+    void configurePlugin(const Dims* inputDims, int nbInputs, const Dims* outputDims, int nbOutputs,
+        const DataType* inputTypes, const DataType* outputTypes, const bool* inputIsBroadcast,
+        const bool* outputIsBroadcast, PluginFormat floatFormat, int maxBatchSize) noexcept override;
+        
+    IPluginV2Ext* clone() const noexcept override;
 
 private:
     int32_t H, W, C, shift_size;
@@ -67,9 +80,9 @@ public:
 
     const PluginFieldCollection* getFieldNames() noexcept override;
 
-    IPluginV2* createPlugin(const char* name, const PluginFieldCollection* fc) noexcept override;
+    IPluginV2Ext* createPlugin(const char* name, const PluginFieldCollection* fc) noexcept override;
 
-    IPluginV2* deserializePlugin(const char* name, const void* serialData, size_t serialLength) noexcept override;
+    IPluginV2Ext* deserializePlugin(const char* name, const void* serialData, size_t serialLength) noexcept override;
 
     void setPluginNamespace(const char* pluginNamespace) noexcept override;
 

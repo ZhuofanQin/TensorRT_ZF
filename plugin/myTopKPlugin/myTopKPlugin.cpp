@@ -118,8 +118,8 @@ size_t MyTopKPlugin::getSerializationSize() const noexcept
 void MyTopKPlugin::serialize(void* buffer) const noexcept
 {
     char *d = reinterpret_cast<char*>(buffer), *a = d;
-    writeToBuffer<int>(d, k);
-    writeToBuffer<int>(d, length);
+    writeToBuffer<int32_t>(d, k);
+    writeToBuffer<int32_t>(d, length);
     PLUGIN_ASSERT(d == a + getSerializationSize());
 }
 
