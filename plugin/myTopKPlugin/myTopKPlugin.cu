@@ -1,6 +1,5 @@
 #include "myTopKPlugin.h"
 #include <float.h>
-#include <stdlib.h>
 #define maxThreadsPerBlock (1024)
 
 using nvinfer1::plugin::MyTopKPlugin;
