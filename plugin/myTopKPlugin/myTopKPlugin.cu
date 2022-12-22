@@ -5,13 +5,6 @@
 using nvinfer1::plugin::MyTopKPlugin;
 
 template <typename T>
-__global__ void plugin_error_check(T* arr, int32_t* ind){
-    const unsigned int tid = blockIdx.x * blockDim.x + threadIdx.x;
-    arr[tid] = 11.1;
-    ind[tid] = 10;
-}
-
-template <typename T>
 __device__ void swap(T &a, T &b){
     T t = a;
     a = b;
