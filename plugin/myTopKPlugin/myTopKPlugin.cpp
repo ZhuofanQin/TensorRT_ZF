@@ -48,14 +48,14 @@ const char* MyTopKPlugin::getPluginVersion () const noexcept
 
 int32_t MyTopKPlugin::getNbOutputs() const noexcept
 {
-    return 1;
+    return 2;
 }
 
 Dims MyTopKPlugin::getOutputDimensions(int32_t index, Dims const *inputs, int32_t nbInputDims) noexcept
 {
     try
     {
-        PLUGIN_ASSERT(index == 0);
+        PLUGIN_ASSERT(index == 0 || index == 1); //This is the index of the output tensor
         PLUGIN_ASSERT(nbInputDims == 1);
         PLUGIN_ASSERT(inputs[0].nbDims == 1);
         Dims outputDims;
@@ -91,7 +91,7 @@ void MyTopKPlugin::configurePlugin(const Dims* inputDims, int nbInputs, const Di
 {
     k = outputDims[0].d[0];
     length = inputDims[0].d[0];
-    PLUGIN_ASSERT(nbOutputs == 1);
+    PLUGIN_ASSERT(nbOutputs == 2);
     PLUGIN_ASSERT(inputDims[0].nbDims == 1);
     PLUGIN_ASSERT(k == MY_K);
     PLUGIN_ASSERT(k <= length);
@@ -142,7 +142,7 @@ bool MyTopKPlugin::canBroadcastInputAcrossBatch(int inputIndex) const noexcept
 nvinfer1::DataType MyTopKPlugin::getOutputDataType(
     int index, const nvinfer1::DataType* inputTypes, int nbInputs) const noexcept
 {
-    if (index == 0)
+    if (index == 1)
     {
         return nvinfer1::DataType::kINT32;
     }
